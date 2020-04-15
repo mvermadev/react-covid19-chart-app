@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Doughnut, Bar, Polar} from 'react-chartjs-2'
 import './Charts.css'
+import NumberFormat from 'react-number-format'
 
 
 var globConfirm = '';
@@ -105,15 +106,15 @@ function Cards(){
         <div className="cards">
             <div className="card">
                 <h6>Confirmed</h6>
-                <h5>{globConfirm}</h5>
+                <h5><NumberFormat value={globConfirm} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
             </div>
             <div className="card">
                 <h6>Recovered</h6>
-                <h5>{globRecover}</h5>
+                <h5><NumberFormat value={globRecover} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
             </div>
             <div className="card">
                 <h6>Deaths</h6>
-                <h5>{globDeath}</h5>
+                <h5><NumberFormat value={globDeath} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
             </div>
         </div>
     )
