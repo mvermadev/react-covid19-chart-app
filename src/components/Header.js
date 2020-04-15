@@ -52,7 +52,7 @@ function Header(props) {
         <div className="header">
             <div className="headerFirst">
             <Link to="/"><p>COVID-19 </p></Link>
-            <p>Statistics Data</p>
+            <p>Statistics.</p>
             </div>
 
             <div className="headerSec">
