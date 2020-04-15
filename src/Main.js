@@ -13,7 +13,6 @@ function Main(props) {
             <Switch>
                 <Route path="/" exact component={Charts} />
                 <Route path="/country/:countryName" component={Regional} />
-                <Route path="/demo" component={Demo} />
             </Switch>
             <Footer/>
         </Router>
