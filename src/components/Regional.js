@@ -44,7 +44,7 @@ function Regional(props) {
     });
 
     const data = {
-        labels: ['Confiremed', 'Recovered', 'Deaths'],
+        labels: ['Confirmed', 'Recovered', 'Deaths'],
         datasets: [
             {
                 label: '',
