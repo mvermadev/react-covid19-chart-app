@@ -82,7 +82,7 @@ function Charts(props) {
     return(
         <div className="chartsHead">
             {covidData.loading || !covidData.cases ? (
-                <p>Loading...</p>
+                <p style={{textAlign:'center'}}>Deep Breath...</p>
             ): (
                 <div>
 
