@@ -86,7 +86,7 @@ function Regional(props) {
     return(
         <div className="chartsHead">
             {covidData.loading || !covidData.cases ? (
-                <p style={{textAlign:'center'}}>Deep Breath...</p>
+                <p style={{textAlign:'center'}}>Stay Home...</p>
             ): (
                 <div>
 

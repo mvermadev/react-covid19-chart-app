@@ -3,11 +3,6 @@ import {Doughnut, Bar, Polar} from 'react-chartjs-2'
 import './Charts.css'
 import NumberFormat from 'react-number-format'
 
-
-var globConfirm = '';
-var globRecover = '';
-var globDeath = '';
-
 function Charts(props) {
 
     const [covidData, setCovidData] = useState({
@@ -82,7 +77,7 @@ function Charts(props) {
     return(
         <div className="chartsHead">
             {covidData.loading || !covidData.cases ? (
-                <p style={{textAlign:'center'}}>Deep Breath...</p>
+                <p style={{textAlign:'center'}}>Stay Home...</p>
             ): (
                 <div>
 

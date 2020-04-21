@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import {Button, Form, Col} from 'react-bootstrap'
-import {useHistory, useParams, Link} from 'react-router-dom';
-import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
+import {Button, Form} from 'react-bootstrap'
+import {useHistory, Link} from 'react-router-dom';
 import './Charts.css'
 
 function Header(props) {
@@ -61,7 +60,7 @@ function Header(props) {
                 </div>
                 <div className="headerSec1">
                 <Form onSubmit={onsubmit}>
-                 <Form.Control type="text" placeholder="Enter country OR Code" name="newValue" value={form.newValue} onChange={onchange} autoComplete="OFF" required />
+                 <Form.Control type="text" placeholder="Enter country OR Code." name="newValue" value={form.newValue} onChange={onchange} autoComplete="OFF" required />
                 </Form>
                 </div>
                 </div>
