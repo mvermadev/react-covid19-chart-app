@@ -75,7 +75,7 @@ function Charts(props) {
     const options = {
         title:{
             display: true,
-            text: 'WorldWide Data'
+            text: 'Worldwide Data'
         }
     }
 
