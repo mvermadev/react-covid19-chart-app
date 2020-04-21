@@ -12,8 +12,7 @@ function Charts(props) {
         todayCases:'',
         critical: '',
         todayDeath : '',
-        flag: '',
-        countryFullName: '',
+        affectCountries: '',
         loading : true
     })
     // const [cases, setCases] = useState();
@@ -38,6 +37,7 @@ function Charts(props) {
                     todayCases: data.todayCases,
                     critical: data.critical,
                     todayDeath: data.todayDeaths,
+                    affectCountries: data.affectedCountries,
                     loading: false})
         })
         .catch(err=>console.log(err));
@@ -88,6 +88,7 @@ function Charts(props) {
                     globCritical={covidData.critical}
                     globDeath={covidData.death}
                     globRecover={covidData.recover}
+                    globAffectCountries={covidData.affectCountries}
                 />
                 <div className="charts">
                     <div className="chart">
@@ -122,7 +123,7 @@ function Cards(props){
             </div>
             <div className="card">
                 <div>
-                <h6>Recovered</h6>
+                <h6>Total Recovered</h6>
                 <h5><NumberFormat value={props.globRecover} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
                 </div>
             </div>
@@ -143,6 +144,10 @@ function Cards(props){
                 <div>
                 <h6>Critical</h6>
                 <h5><NumberFormat value={props.globCritical} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
+                </div>    
+                <div>
+                <h6>Affected Countries</h6>
+                <h5><NumberFormat value={props.globAffectCountries} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
                 </div>    
             </div>
         </div>

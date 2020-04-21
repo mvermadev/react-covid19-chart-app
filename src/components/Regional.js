@@ -16,6 +16,7 @@ function Regional(props) {
         todayDeath : '',
         flag: '',
         countryFullName: '',
+        continents: 'a',
         loading : true
     })
     // const [cases, setCases] = useState();
@@ -42,6 +43,7 @@ function Regional(props) {
                     todayDeath: data.todayDeaths,
                     flag: data.countryInfo.flag,
                     countryFullName: data.country,
+                    continents: data.continent,
                     loading: false})
         })
         .catch(err=>console.log(err));
@@ -103,6 +105,7 @@ function Regional(props) {
                     globCritical={covidData.critical}
                     globDeath={covidData.death}
                     globRecover={covidData.recover}
+                    globContinent={covidData.continents}
                 />
                 <div className="charts">
                     <div className="chart">
@@ -137,7 +140,7 @@ function Cards(props){
             </div>
             <div className="card">
                 <div>
-                <h6>Recovered</h6>
+                <h6>Total Recovered</h6>
                 <h5><NumberFormat value={props.globRecover} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
                 </div>
             </div>
@@ -158,6 +161,10 @@ function Cards(props){
                 <div>
                 <h6>Critical</h6>
                 <h5><NumberFormat value={props.globCritical} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
+                </div>    
+                <div>
+                <h6>Continent</h6>
+                <h5>{props.globContinent}</h5>
                 </div>    
             </div>
         </div>
