@@ -8,15 +8,19 @@ var globConfirm = '';
 var globRecover = '';
 var globDeath = '';
 
-function Charts(){
-    
+function Charts(props) {
+
     const [covidData, setCovidData] = useState({
         cases : '',
         recover : '',
         death : '',
+        todayCases:'',
+        critical: '',
+        todayDeath : '',
+        flag: '',
+        countryFullName: '',
         loading : true
     })
-
     // const [cases, setCases] = useState();
     // const [recover, setRecover] = useState();
     // const [death, setDeath] = useState();
@@ -25,20 +29,26 @@ function Charts(){
     const result = ''
 
     useEffect(()=>{
-        const url = 'https://covid19.mathdro.id/api'
+        var url = `https://corona.lmao.ninja/v2/all`
         fetch(url)
         .then(res=>res.json())
         .then((data)=>{
             // setCases(data.confirmed.value)
             // setRecover(data.recovered.value)
             // setDeath(data.deaths.value)
-            setCovidData({ cases: data.confirmed.value,
-                           recover: data.recovered.value,
-                           death: data.deaths.value,
-                            loading: false})
+                
+            setCovidData({ cases: data.cases,
+                    recover: data.recovered,
+                    death: data.deaths,
+                    todayCases: data.todayCases,
+                    critical: data.critical,
+                    todayDeath: data.todayDeaths,
+                    loading: false})
         })
-        .catch(err=>console.log(err))
+        .catch(err=>console.log(err));
+
     });
+
 
     const data = {
         labels: ['Confirmed', 'Recovered', 'Deaths'],
@@ -65,13 +75,9 @@ function Charts(){
     const options = {
         title:{
             display: true,
-            text: 'Worldwide Data'
+            text: 'WorldWide Data'
         }
     }
-
-    globConfirm = covidData.cases
-    globRecover = covidData.recover
-    globDeath = covidData.death
 
     return(
         <div className="chartsHead">
@@ -79,45 +85,77 @@ function Charts(){
                 <p>Loading...</p>
             ): (
                 <div>
-                <Cards/>
+
+                <Cards 
+                    globTodayCases={covidData.todayCases} 
+                    globTodayDeath={covidData.todayDeath}
+                    globConfirm={covidData.cases}
+                    globCritical={covidData.critical}
+                    globDeath={covidData.death}
+                    globRecover={covidData.recover}
+                />
                 <div className="charts">
                     <div className="chart">
                     <Doughnut data={data} options={options}></Doughnut>
-                    </div>
-                    <div className="chart">
-                    <Polar data={data} options={options}></Polar>
                     </div>
                     <div className="chart">
                     <Bar data={data} options={options}></Bar>
                     </div>
                 </div>
                 </div>
-            )}
-
-            
-
+                    )}
         </div>
     )
 }
 
 
-function Cards(){
+function Cards(props){
+
     return (
+        <div>
+        
         <div className="cards">
             <div className="card">
-                <h6>Confirmed</h6>
-                <h5><NumberFormat value={globConfirm} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
+                <div>
+                <h6>Total Confirmed</h6>
+                <h5><NumberFormat value={props.globConfirm} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
+                </div>
+                <div>
+                <h6>Today</h6>
+                <h5><NumberFormat value={props.globTodayCases} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
+                </div>
             </div>
             <div className="card">
+                <div>
                 <h6>Recovered</h6>
-                <h5><NumberFormat value={globRecover} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
+                <h5><NumberFormat value={props.globRecover} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
+                </div>
+            </div>
+    </div>
+        
+        <div className="cards1">
+            <div className="card">
+                <div>
+                <h6>Total Deaths</h6>
+                <h5><NumberFormat value={props.globDeath} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
+                </div>
+                <div>
+                <h6>Today</h6>
+                <h5><NumberFormat value={props.globTodayDeath} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
+                </div>
             </div>
             <div className="card">
-                <h6>Deaths</h6>
-                <h5><NumberFormat value={globDeath} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
+                <div>
+                <h6>Critical</h6>
+                <h5><NumberFormat value={props.globCritical} displayType={'text'} thousandSeparator={true} renderText={value => <div>{value}</div>} /></h5>
+                </div>    
             </div>
         </div>
+            <p style={{textAlign: 'center', fontSize: '13px', opacity:0.7, marginTop: '5px'}}>"Today's" data will update constantly.</p>
+    </div>
     )
 }
+
+
 
 export default Charts;
