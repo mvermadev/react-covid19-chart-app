@@ -87,7 +87,8 @@
 
 .cards1 .card:nth-child(1){
     border-top: 5px solid rgb(194, 4, 4);
-    color: rgb(150, 5, 5)
+    color: rgb(150, 5, 5);
+    margin-top: 10px;
 }
 
 .cards1 .card:nth-child(2){
